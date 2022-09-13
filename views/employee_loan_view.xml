@@ -1,0 +1,79 @@
+<odoo>
+    <record model="ir.ui.view" id="employee_loan_form_view">
+        <field name="name">form.view.employee.loan</field>
+        <field name="model">employee.loan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+<!--                    <button string="Draft" states="cancelled,confirmed,ended" class="oe_highlight"-->
+<!--                            name="button_draft" type="object"/>-->
+<!--                    <button string="Confirmed" states="cancelled,draft,ended" class="oe_highlight"-->
+<!--                            name="button_confirmed" type="object"/>-->
+<!--                    <button string="Cancelled" states="draft,ended,confirmed" class="oe_highlight"-->
+<!--                            name="button_cancelled" type="object"/>-->
+<!--                    <button string="Ended" states="confirmed,cancelled,draft" class="oe_highlight"-->
+<!--                            name="button_ended" type="object"/>-->
+                    <button string="Draft"  attrs="{'invisible' : [('state', '=', 'draft')]}" class="oe_highlight"
+                            name="button_draft" type="object"/>
+                    <button string="Confirmed" attrs="{'invisible' : [('state', '=', 'confirmed')]}" class="oe_highlight"
+                            name="button_confirmed" type="object"/>
+                    <button string="Cancelled"  attrs="{'invisible' : [('state', '=', 'cancelled')]}" class="oe_highlight"
+                            name="button_cancelled" type="object"/>
+                    <button string="Ended" attrs="{'invisible' : [('state', '=', 'ended')]}" class="oe_highlight"
+                            name="button_ended" type="object"/>
+
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <group>
+                        <field name="user_id" readonly="1"/>
+                        <field name="amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_loan_tree_view" model="ir.ui.view">
+        <field name="name">tree view of employee loan</field>
+        <field name="model">employee.loan</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="employee_id"/>
+                <field name="start_date" optional="hide"/>
+                <field name="end_date" optional="hide"/>
+                <field name="user_id" optional="hide"/>
+                <field name="state" optional="hide"/>
+                <field name="amount" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="employee_loan_action" model="ir.actions.act_window">
+        <field name="name">Employee Loan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.loan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem
+            id="menu_employee_loan_root"
+            name="Employee Loan"/>
+
+    <menuitem
+            id="menu_employee_loan"
+            name="Employee Loan"
+            parent="menu_employee_loan_root"
+            action="employee_loan_action"/>
+
+
+</odoo>

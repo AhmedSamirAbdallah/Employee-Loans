@@ -1,0 +1,68 @@
+<odoo>
+    <template id="employee_loan_report_temp">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="oe_structure">
+                        <div class="page">
+                            <h2>Customer Contract</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">Employee :
+                                        <t t-esc="o.employee_id.name"/>
+                                    </div>
+                                    <div class="col-6">Amount :
+                                        <t t-esc="o.amount"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">Start Date:
+                                        <t t-esc="o.start_date"/>
+                                    </div>
+                                    <div class="col-6">End Date:
+                                        <t t-esc="o.end_date"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">State:
+                                        <t t-esc="o.state"/>
+                                    </div>
+                                    <div class="col-6">
+                                        Limit :
+                                        <t t-esc="o.employee_id.allowed_loan_limit"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        Total Amount of Loans :
+                                        <t t-esc="o.employee_id.total_loan_amount"/>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">Printed By:
+                                        <t t-esc="user.name"/>
+                                    </div>
+                                    <div class="col-6">Printed at:
+                                        <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_employee_loan" model="ir.actions.report">
+        <field name="name">report</field>
+        <field name="model">employee.loan</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">itq_employee_loan.employee_loan_report_temp</field>
+        <field name="report_file">itq_employee_loan.employee_loan_report_temp</field>
+        <field name="binding_model_id" ref="model_employee_loan"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

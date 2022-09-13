@@ -1,0 +1,8 @@
+<odoo>
+    <record id="group_loan_users" model="res.groups">
+        <field name="name">Loan Users</field>
+    </record>
+    <record id="group_loan_manager" model="res.groups">
+        <field name="name">Loan Manager</field>
+    </record>
+</odoo>

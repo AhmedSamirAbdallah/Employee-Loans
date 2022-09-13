@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+group_loan_users_id,group_loan_users_name,model_employee_loan,group_loan_users,1,1,1,0
+group_loan_manager_id,group_loan_manager_name,model_employee_loan,group_loan_manager,1,1,1,1

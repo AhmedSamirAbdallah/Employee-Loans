@@ -1,0 +1,10 @@
+<odoo>
+    <record id="employee_loan_users_rule" model="ir.rule">
+        <field name="name">Employee Loan User</field>
+        <field name="model_id" ref="model_employee_loan"/>
+        <field name="domain_force">[ ('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_loan_users'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,40 @@
+<odoo>
+    <template id="inherite_report_employee" inherit_id="hr.print_employee_badge">
+        <xpath expr="//table[1]" position="after">
+            <div>
+                <table class="table table-bordered mb64">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Amount</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="employee.loans" t-as="loan">
+                            <tr>
+                                <td>
+                                    <span t-field="loan.employee_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="loan.amount"/>
+                                </td>
+                                <td>
+                                    <span t-field="loan.start_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="loan.end_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="loan.state"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </xpath>
+    </template>
+</odoo>
